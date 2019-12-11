@@ -14,11 +14,12 @@ class EventsListTableViewController: UITableViewController {
     
     var interactor: EventsListViewInteractorable!
     
-    static func controller(interactor: EventsListViewInteractorable) {
+    static func controller(interactor: EventsListViewInteractorable) -> EventsListTableViewController {
         guard let controller = UIStoryboard(name: "EventsListTableViewController", bundle: nil).instantiateInitialViewController() as? EventsListTableViewController else {
             fatalError("Storyboard data not found")
         }
         controller.interactor = interactor
+        return controller
     }
     
     // MARK: Table View Data Source

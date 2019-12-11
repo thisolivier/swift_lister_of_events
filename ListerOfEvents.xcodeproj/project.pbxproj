@@ -23,6 +23,7 @@
 		0935165A23A117900073B58D /* EventsListViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935165823A117900073B58D /* EventsListViewProtocols.swift */; };
 		0935165C23A13D490073B58D /* EventsListDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935165B23A13D490073B58D /* EventsListDefaultTableViewCell.swift */; };
 		0935165D23A13D490073B58D /* EventsListDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935165B23A13D490073B58D /* EventsListDefaultTableViewCell.swift */; };
+		09C0984323A15BD700EDA906 /* HttpApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C0984223A15BD700EDA906 /* HttpApiService.swift */; };
 		09D0214D23A1488B00B650CD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0214C23A1488B00B650CD /* Event.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		0935165523A1176D0073B58D /* EventsListViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewInteractor.swift; sourceTree = "<group>"; };
 		0935165823A117900073B58D /* EventsListViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewProtocols.swift; sourceTree = "<group>"; };
 		0935165B23A13D490073B58D /* EventsListDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListDefaultTableViewCell.swift; sourceTree = "<group>"; };
+		09C0984223A15BD700EDA906 /* HttpApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpApiService.swift; sourceTree = "<group>"; };
 		09D0214C23A1488B00B650CD /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,8 @@
 				0935162E23A10F560073B58D /* Info.plist */,
 				0900EEFD23A1412F006FAE68 /* Static */,
 				0900EEFA23A13F60006FAE68 /* Models */,
+				09D0214F23A1519B00B650CD /* Stores */,
+				09D0214E23A1518300B650CD /* Services */,
 				0935165223A1170F0073B58D /* EventsListView */,
 			);
 			path = ListerOfEvents;
@@ -171,6 +175,21 @@
 				0935165823A117900073B58D /* EventsListViewProtocols.swift */,
 			);
 			path = EventsListView;
+			sourceTree = "<group>";
+		};
+		09D0214E23A1518300B650CD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				09C0984223A15BD700EDA906 /* HttpApiService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		09D0214F23A1519B00B650CD /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Stores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +331,7 @@
 				0935165C23A13D490073B58D /* EventsListDefaultTableViewCell.swift in Sources */,
 				0900EEFC23A13F72006FAE68 /* FavouriteState.swift in Sources */,
 				0935165423A117500073B58D /* EventsListTableViewController.swift in Sources */,
+				09C0984323A15BD700EDA906 /* HttpApiService.swift in Sources */,
 				0935162323A10F520073B58D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
