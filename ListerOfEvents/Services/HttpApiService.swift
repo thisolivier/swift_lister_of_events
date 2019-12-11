@@ -21,6 +21,7 @@ class HttpApiService {
         case couldNotConvertData(message: String)
     }
     
+    @discardableResult
     func getCodable<T: Codable>(from url: URL, completionHandler: (_: Result<T, Error>)->()) -> Cancellable {
         return self.urlSession.dataTaskPublisher(for: url)
             .map { $0.data }
@@ -37,6 +38,7 @@ class HttpApiService {
             })
     }
     
+    @discardableResult
     func getImage(from url: URL, completionHandler: (_: Result<UIImage, Error>)->()) -> Cancellable {
         return self.urlSession.dataTaskPublisher(for: url)
             .map { UIImage(data: $0.data) }

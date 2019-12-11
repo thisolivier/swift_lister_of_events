@@ -10,7 +10,21 @@ import Foundation
 
 class EventStore {
     
-    let events: [Event] = []
+    private var events: [Event] = []
+    
+    var eventsCount: Int { return events.count }
+    
+    func addEvents(_ events: [Event]) {
+        self.events.append(contentsOf: events)
+    }
+    
+    func getEvent(at index: Int) -> Event? {
+        if index < events.count {
+            return events[index]
+        } else {
+            return nil
+        }
+    }
     
     func indexForUrl(_ url: URL) -> Int? {
         // Assumed that each event has a unique image

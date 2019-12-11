@@ -16,6 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
+        //http://my-json-server.typicode.com/livestyled/mock-api/events
         let interactor = EventsListViewInteractor()
         let eventListTableViewController = EventsListTableViewController.controller(interactor: interactor)
         let window = UIWindow(windowScene: windowScene)

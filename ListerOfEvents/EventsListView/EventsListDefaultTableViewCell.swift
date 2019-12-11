@@ -55,12 +55,3 @@ class EventsListDefaultTableViewCell: UITableViewCell {
     }
     
 }
-
-struct EventsListDefaultCellDependencies {
-    let row: Int
-    let image: UIImage
-    let favouriteState: FavouriteState
-    let title: String
-    let subtitle: String
-    let interactor: EventsListViewInteractorable
-}

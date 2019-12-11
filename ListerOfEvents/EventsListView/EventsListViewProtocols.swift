@@ -6,7 +6,7 @@
 //  Copyright © 2019 Olivier Butler. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol EventsListViewControllerable {
     
@@ -24,6 +24,17 @@ protocol EventsListViewInteractorable {
     
     func setFavoriteState(onRow row: Int, favoriteState: FavouriteState)
     
-    func getEventAtRow(_ row: Int)
+    func getEventAtRow(_ row: Int) -> EventsListDefaultCellConfiguration
+    
+}
+
+struct EventsListDefaultCellConfiguration {
+    
+    let row: Int
+    let image: UIImage
+    let favouriteState: FavouriteState
+    let title: String
+    let subtitle: String
+    let interactor: EventsListViewInteractorable
     
 }
