@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             imageService: ImageService(httpApiService: httpApiService, imageStore: imageStore),
             eventService: EventService(
                 apiService: httpApiService,
-                eventStore: EventStore(),
+                eventStore: eventStore,
                 remoteUrl: apiBaseUrl),
             eventStore: eventStore,
             favouriteStore: favouriteStore)

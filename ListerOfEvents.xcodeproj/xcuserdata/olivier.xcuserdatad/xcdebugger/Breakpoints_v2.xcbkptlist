@@ -14,8 +14,8 @@
             filePath = "ListerOfEvents/EventsListView/EventsListViewInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "requestMoreEvents()"
             landmarkType = "7">
             <Actions>
@@ -38,8 +38,8 @@
             filePath = "ListerOfEvents/Services/EventService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "loadEvents(pageOffset:completionHandler:)"
             landmarkType = "7">
             <Actions>
@@ -270,8 +270,8 @@
             filePath = "ListerOfEvents/Stores/EventStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "addEvents(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "ListerOfEvents/EventsListView/EventsListViewInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "requestMoreEvents()"
             landmarkType = "7">
          </BreakpointContent>

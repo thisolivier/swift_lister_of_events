@@ -10,21 +10,16 @@ import Foundation
 
 class EventStore {
     
-    private var events: [Event] = [] {
+    var events: [Event] = [] {
         didSet {
             print("Saving Events - are we main?", Thread.isMainThread)
             print("Events saved! we have:", self.events)
         }
     }
     
-    var eventsCount: Int {
-        print("Counting Events - are we main?", Thread.isMainThread)
-        return events.count
-    }
-    
     func addEvents(_ events: [Event]) {
         self.events.append(contentsOf: events)
-        print("We now have \(eventsCount) events")
+        print("We now have \(events.count) events")
     }
     
     func getEvent(at index: Int) -> Event? {

@@ -29,8 +29,9 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     var countOfEvents: Int {
         get {
             print("Getting count - are we main?", Thread.isMainThread)
-            print("How many events have we?", self.eventStore.eventsCount)
-            return self.eventStore.eventsCount
+            let count = self.eventStore.events.count
+            print("How many events have we?", count)
+            return count
         }
     }
     
