@@ -16,22 +16,22 @@ class EventsListDefaultTableViewCell: UITableViewCell {
     @IBOutlet weak var favouriteButton: UIButton!
     
     private var row: Int?
-    private var interactor: EventsListViewInteractorable?
+    private var favouriteStateHandler: ((_: Int, _: FavouriteState)->())?
     private var favouriteState: FavouriteState?
     
-    func configure(_ configuration: EventsListDefaultCellDependencies) {
+    func configure(_ configuration: EventsListDefaultCellConfiguration) {
         self.eventTitle.text = configuration.title
         self.eventSubtitle.text = configuration.subtitle
         self.eventImage.image = configuration.image
         self.row = configuration.row
         self.favouriteState = configuration.favouriteState
-        self.interactor = configuration.interactor
+        self.favouriteStateHandler = configuration.favouriteStateHandler
     }
     
     override func prepareForReuse() {
         self.row = nil
         self.favouriteState = nil
-        self.interactor = nil
+        self.favouriteStateHandler = nil
         self.eventImage.image = nil
         self.eventTitle.text = ""
         self.eventSubtitle.text = ""
@@ -41,7 +41,7 @@ class EventsListDefaultTableViewCell: UITableViewCell {
         guard
             let oldFavouriteState = self.favouriteState,
             let myRow = self.row,
-            let interactor = self.interactor
+            let handler = self.favouriteStateHandler
             else {
                 return
         }
@@ -51,7 +51,7 @@ class EventsListDefaultTableViewCell: UITableViewCell {
             case .none: return .favourite
             }
         }()
-        interactor.setFavoriteState(onRow: myRow, favoriteState: newFavouriteState)
+        handler(myRow, newFavouriteState)
     }
     
 }

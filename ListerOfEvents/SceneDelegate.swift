@@ -16,12 +16,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
         }
-        //http://my-json-server.typicode.com/livestyled/mock-api/events
-        let interactor = EventsListViewInteractor()
+        let apiBaseUrl = URL(string: "http://my-json-server.typicode.com/livestyled/mock-api/events")!
+        let httpApiService = HttpApiService()
+        let imageStore = ImageStore()
+        let eventStore = EventStore()
+        let favouriteStore = FavouriteStore()
+        
+        let interactor = EventsListViewInteractor(
+            imageService: ImageService(httpApiService: httpApiService, imageStore: imageStore),
+            eventService: EventService(
+                apiService: httpApiService,
+                eventStore: EventStore(),
+                remoteUrl: apiBaseUrl),
+            eventStore: eventStore,
+            favouriteStore: favouriteStore)
         let eventListTableViewController = EventsListTableViewController.controller(interactor: interactor)
+        interactor.viewController = eventListTableViewController
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = eventListTableViewController
         self.window = window
+        print("We should have a view visible...")
         window.makeKeyAndVisible()
     }
 

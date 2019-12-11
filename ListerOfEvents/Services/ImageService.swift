@@ -22,11 +22,11 @@ class ImageService{
         return self.imageStore.getImage(for: url)
     }
     
-    func downloadImage(at url: URL, completionHandler: (_: Bool)->()) {
-        self.httpApiService.getImage(from: url, completionHandler: { (result: Result<UIImage, Error>) in
+    func downloadImage(at url: URL, completionHandler: @escaping (_: Bool)->()) {
+        self.httpApiService.getImage(from: url, completionHandler: { [weak self] (result: Result<UIImage, Error>) in
             switch result {
             case .success(let image):
-                self.imageStore.storeImage(image, for: url)
+                self?.imageStore.storeImage(image, for: url)
                 completionHandler(true)
             case .failure(let error):
                 print(error.localizedDescription)

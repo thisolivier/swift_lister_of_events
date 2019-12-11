@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol EventsListViewControllerable {
+protocol EventsListViewControllerable: class {
     
     func updateRow(_ row: Int)
     
@@ -20,9 +20,7 @@ protocol EventsListViewInteractorable {
     
     var countOfEvents: Int { get }
     
-    func loadNext()
-    
-    func setFavoriteState(onRow row: Int, favoriteState: FavouriteState)
+    func requestMoreEvents()
     
     func getEventAtRow(_ row: Int) -> EventsListDefaultCellConfiguration
     
@@ -35,6 +33,10 @@ struct EventsListDefaultCellConfiguration {
     let favouriteState: FavouriteState
     let title: String
     let subtitle: String
-    let interactor: EventsListViewInteractorable
+    let favouriteStateHandler: (_:Int, _: FavouriteState)->()
+    
+    static let empty: Self = {
+        return Self(row: 0, image: UIImage(), favouriteState: .none, title: "", subtitle: "", favouriteStateHandler: {_,_ in })
+    }()
     
 }

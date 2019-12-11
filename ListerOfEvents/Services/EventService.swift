@@ -20,8 +20,9 @@ class EventService {
         self.remoteUrl = remoteUrl
     }
     
-    func loadEvents(pageOffset: Int, completionHandler: (_: Bool)->()) {
-        let completeUrl = self.remoteUrl.appendingPathComponent("?_page=\(pageOffset)")
+    func loadEvents(pageOffset: Int, completionHandler: @escaping (_: Bool)->()) {
+        // TODO: This isn't how to construct query strings, and you know it.
+        let completeUrl = URL(string: self.remoteUrl.absoluteString + "?_page=\(pageOffset)")!
         self.httpApiService.getCodable(from: completeUrl, completionHandler: { (result: Result<[Event], Error>) in
             switch result {
             case .success(let events):

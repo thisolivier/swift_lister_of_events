@@ -22,6 +22,11 @@ class EventsListTableViewController: UITableViewController {
         return controller
     }
     
+    override func viewDidLoad() {
+        print("My view loaded, I'm going to request some events")
+        self.interactor.requestMoreEvents()
+    }
+    
     // MARK: Table View Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,9 +40,18 @@ class EventsListTableViewController: UITableViewController {
         guard self.tableView == tableView else {
             return UITableViewCell()
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.eventCellIdentifier) as? EventsListDefaultTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: self.eventCellIdentifier) as? EventsListDefaultTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(self.interactor.getEventAtRow(indexPath.row))
         
+        DispatchQueue.global(qos: .background).async {
+            if indexPath.row + 10 < self.interactor.countOfEvents {
+                self.interactor.requestMoreEvents()
+            }
+        }
         
+        return cell
     }
     
 }
@@ -45,11 +59,11 @@ class EventsListTableViewController: UITableViewController {
 extension EventsListTableViewController: EventsListViewControllerable {
     
     func updateRow(_ row: Int) {
-        <#code#>
+        self.tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .fade)
     }
     
     func reloadRows() {
-        <#code#>
+        self.tableView.reloadData()
     }
     
 }
