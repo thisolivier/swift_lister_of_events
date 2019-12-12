@@ -14,10 +14,26 @@ class EventsListDefaultTableViewCell: UITableViewCell {
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventSubtitle: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
+    @IBOutlet weak var backgroundWrapperView: UIView!
     
     private var row: Int?
-    private var favouriteStateHandler: ((_: Int, _: FavouriteState)->())?
-    private var favouriteState: FavouriteState?
+    private var setFavouriteStateHandler: ((_: Int, _: FavouriteState)->())?
+    private var favouriteState: FavouriteState? {
+        didSet {
+            guard let favouriteState = self.favouriteState else {
+                return
+            }
+            let title: String = {
+                switch favouriteState {
+                case .none:
+                    return DisplayStrings.addToFavourites.rawValue
+                case .favourite:
+                    return DisplayStrings.removeFromFavourites.rawValue
+                }
+            }()
+            self.favouriteButton.setTitle(title, for: .normal)
+        }
+    }
     
     func configure(_ configuration: EventsListDefaultCellConfiguration) {
         self.eventTitle.text = configuration.title
@@ -25,13 +41,16 @@ class EventsListDefaultTableViewCell: UITableViewCell {
         self.eventImage.image = configuration.image
         self.row = configuration.row
         self.favouriteState = configuration.favouriteState
-        self.favouriteStateHandler = configuration.favouriteStateHandler
+        self.setFavouriteStateHandler = configuration.setFavouriteStateHandler
+        
+        self.backgroundWrapperView.layer.cornerRadius = 5
+        self.favouriteButton.layer.cornerRadius = 5
     }
     
     override func prepareForReuse() {
         self.row = nil
         self.favouriteState = nil
-        self.favouriteStateHandler = nil
+        self.setFavouriteStateHandler = nil
         self.eventImage.image = nil
         self.eventTitle.text = ""
         self.eventSubtitle.text = ""
@@ -41,7 +60,7 @@ class EventsListDefaultTableViewCell: UITableViewCell {
         guard
             let oldFavouriteState = self.favouriteState,
             let myRow = self.row,
-            let handler = self.favouriteStateHandler
+            let handler = self.setFavouriteStateHandler
             else {
                 return
         }

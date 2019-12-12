@@ -5,217 +5,159 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.RuntimeIssueBreakpoint">
          <BreakpointContent
-            uuid = "C14B01C1-16FE-45E3-9DA4-95EB270EF2D8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "Yes"
-            filePath = "ListerOfEvents/EventsListView/EventsListViewInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "requestMoreEvents()"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po &quot;Requesting events&quot;">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "26D565E8-9677-4959-956F-F90D77E5AC8C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "Yes"
-            filePath = "ListerOfEvents/Services/EventService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "loadEvents(pageOffset:completionHandler:)"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po &quot;servicing your request for events&quot;">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-            <Locations>
-               <Location
-                  uuid = "26D565E8-9677-4959-956F-F90D77E5AC8C - eee204a65e6a7f20"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ListerOfEvents.EventService.loadEvents(pageOffset: Swift.Int, completionHandler: (Swift.Bool) -&gt; ()) -&gt; ()"
-                  moduleName = "ListerOfEvents"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olivier/Sites/ListerOfEvents/ListerOfEvents/Services/EventService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "25"
-                  endingLineNumber = "25"
-                  offsetFromSymbolStart = "1070">
-               </Location>
-               <Location
-                  uuid = "26D565E8-9677-4959-956F-F90D77E5AC8C - eca218cf34e07153"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;ListerOfEvents.Event&gt;, Swift.Error&gt;) -&gt; () in ListerOfEvents.EventService.loadEvents(pageOffset: Swift.Int, completionHandler: (Swift.Bool) -&gt; ()) -&gt; ()"
-                  moduleName = "ListerOfEvents"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olivier/Sites/ListerOfEvents/ListerOfEvents/Services/EventService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "228">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "28C0A4D0-9FFE-4CE1-A2F0-869E6EFE60E1"
+            uuid = "4BF1D301-6CC6-4023-BD7F-79E61A9808FA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ListerOfEvents/Services/HttpApiService.swift"
+            breakpointStackSelectionBehavior = "1"
+            type = "1">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.RuntimeIssueBreakpoint">
+         <BreakpointContent
+            uuid = "F01C5318-CC82-47D3-9132-FEB3AF3E442C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            type = "4">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5FF6B63-874E-4294-8894-03B6299EC030"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ListerOfEvents/Stores/FavouriteStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "getCodable(from:completionHandler:)"
+            landmarkName = "setFavouriteState(event:state:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "28C0A4D0-9FFE-4CE1-A2F0-869E6EFE60E1 - 5720b0589140365d"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ListerOfEvents.HttpApiService.getCodable&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(from: Foundation.URL, completionHandler: (Swift.Result&lt;A, Swift.Error&gt;) -&gt; ()) -&gt; Combine.Cancellable"
-                  moduleName = "ListerOfEvents"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olivier/Sites/ListerOfEvents/ListerOfEvents/Services/HttpApiService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "484">
-               </Location>
-               <Location
-                  uuid = "28C0A4D0-9FFE-4CE1-A2F0-869E6EFE60E1 - a8a35d317247dbad"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 ((data: Foundation.Data, response: __C.NSURLResponse)) -&gt; Foundation.Data in ListerOfEvents.HttpApiService.getCodable&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(from: Foundation.URL, completionHandler: (Swift.Result&lt;A, Swift.Error&gt;) -&gt; ()) -&gt; Combine.Cancellable"
-                  moduleName = "ListerOfEvents"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olivier/Sites/ListerOfEvents/ListerOfEvents/Services/HttpApiService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "38">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "84DA35E3-3ABA-4E20-BB26-65D97D90D4AB"
+            uuid = "42BEEC03-ABC1-46C5-BCF0-D8CF804CE1A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ListerOfEvents/Stores/FavouriteStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "getFavouriteState(event:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "262C27C7-390A-4ADD-9132-222BBC381688"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ListerOfEvents/EventsListView/EventsListDefaultTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "didTapFavorite(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C89181F-B11A-4990-9198-DBE6C1449FC7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ListerOfEvents/EventsListView/EventsListDefaultTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "didTapFavorite(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C8CBB93-4E66-4451-985B-C7ABFD0FA743"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ListerOfEvents/Stores/FavouriteStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "init(userDefaults:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ECDA7278-A5C6-4191-AF57-EAF2B2A13F26"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ListerOfEvents/Stores/FavouriteStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "init(userDefaults:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3CBA04F-16FC-4366-A670-9CF66A56DCDA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ListerOfEvents/Services/HttpApiService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "getImage(from:completionHandler:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "getCodable(from:completionHandler:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "84DA35E3-3ABA-4E20-BB26-65D97D90D4AB - b044bd47553c5115"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ListerOfEvents.HttpApiService.getImage(from: Foundation.URL, completionHandler: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; Combine.Cancellable"
-                  moduleName = "ListerOfEvents"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olivier/Sites/ListerOfEvents/ListerOfEvents/Services/HttpApiService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "398">
-               </Location>
-               <Location
-                  uuid = "84DA35E3-3ABA-4E20-BB26-65D97D90D4AB - 9130dd1990104fa0"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 ((data: Foundation.Data, response: __C.NSURLResponse)) -&gt; Swift.Optional&lt;__C.UIImage&gt; in ListerOfEvents.HttpApiService.getImage(from: Foundation.URL, completionHandler: (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; ()) -&gt; Combine.Cancellable"
-                  moduleName = "ListerOfEvents"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olivier/Sites/ListerOfEvents/ListerOfEvents/Services/HttpApiService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "45">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FF06C641-D1AD-4A20-AF90-0E978FED80DA"
-            shouldBeEnabled = "Yes"
+            uuid = "A745F670-131A-433A-AAE7-0FC80095ADA7"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ListerOfEvents/Services/HttpApiService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "getImage(from:completionHandler:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "getCodable(from:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B35F706F-B561-46D6-B768-5C39EC63083C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ListerOfEvents/Services/HttpApiService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "getImage(from:completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6B3F0280-226E-4CA2-BC6D-DEDB60ED191F"
+            uuid = "4D9E7689-7055-4C3D-A39F-11B0D3E027B6"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -231,15 +173,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3415DEB5-F4FB-484A-8A64-FFCDE1FE6B57"
+            uuid = "F9CFDBAE-8F1E-4DF0-A24B-DE740EB9F016"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ListerOfEvents/Services/HttpApiService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "getCodable(from:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -247,48 +189,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CA2E2EC2-C2D2-4597-B029-8619D8BEF7DC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ListerOfEvents/EventsListView/EventsListTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "09007660-8A3D-4A99-A0B7-65CBF1DE8B72"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ListerOfEvents/Stores/EventStore.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "addEvents(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "88C14C9D-4038-409D-AE37-3AC08A569D6B"
+            uuid = "E8549E5E-00C0-4AAC-A442-FDA8E4BA21E4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ListerOfEvents/EventsListView/EventsListViewInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "requestMoreEvents()"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "retryInternetConnection()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

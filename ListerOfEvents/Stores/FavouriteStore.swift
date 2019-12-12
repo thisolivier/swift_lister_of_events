@@ -13,34 +13,37 @@ class FavouriteStore {
     private let userDefaults: UserDefaults
     private let favouritesKey: String = "favourites"
     
-    private var favouritesById: [String] = []
+    private var favourites: [Event]
     
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
-        if let existingFavourites = userDefaults.array(forKey: self.favouritesKey) as? [String] {
-            self.favouritesById = existingFavourites
+        if let existingFavourites = userDefaults.array(forKey: self.favouritesKey) as? [Event] {
+            self.favourites = existingFavourites
         } else {
+            self.favourites = []
             self.updatePeristentStorage()
         }
     }
     
-    func setFavouriteState(id: String, state: FavouriteState) {
+    func setFavouriteState(event: Event, state: FavouriteState) {
         print("saving the favourite state")
-        let isInFavourites = self.favouritesById.contains(id)
+        let isInFavourites = self.favourites.contains(where: { $0 == event })
         switch state {
         case .favourite:
             if !isInFavourites {
-                self.favouritesById.append(id)
+                self.favourites.append(event)
+                self.updatePeristentStorage()
             }
         case .none:
             if isInFavourites {
-                self.favouritesById.removeAll(where: { $0 == id })
+                self.favourites.removeAll(where: { $0 == event })
+                self.updatePeristentStorage()
             }
         }
     }
     
-    func getFavouriteState(id: String) -> FavouriteState {
-        switch self.favouritesById.contains(id) {
+    func getFavouriteState(event: Event) -> FavouriteState {
+        switch self.favourites.contains(event) {
         case true:
             return .favourite
         case false:
@@ -48,9 +51,13 @@ class FavouriteStore {
         }
     }
     
+    func getAllFavourites() -> [Event] {
+        return self.favourites
+    }
+    
     private func updatePeristentStorage() {
         DispatchQueue.global(qos: .background).async {
-            self.userDefaults.set(self.favouritesById, forKey: self.favouritesKey)
+            self.userDefaults.set(self.favourites, forKey: self.favouritesKey)
         }
     }
     

@@ -10,6 +10,10 @@ import UIKit
 
 class EventsListViewInteractor: EventsListViewInteractorable {
     
+    enum EventRequestState {
+        case idle, requesting, exhausted, offline
+    }
+    
     private let imageService: ImageService
     private let eventService: EventService
     private let eventStore: EventStore
@@ -17,7 +21,7 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     weak var viewController: EventsListViewControllerable?
     
     private var nextPageToLoad = 1
-    private var requesting: Bool = false
+    private var eventRequestState: EventRequestState = .idle
     
     init(imageService: ImageService, eventService: EventService, eventStore: EventStore, favouriteStore: FavouriteStore) {
         self.imageService = imageService
@@ -27,92 +31,106 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     }
     
     var countOfEvents: Int {
-        get {
-            print("Getting count - are we main?", Thread.isMainThread)
-            let count = self.eventStore.events.count
-            print("How many events have we?", count)
-            return count
-        }
+        return self.eventStore.eventsCount
     }
     
     func requestMoreEvents() {
-        guard let viewController = self.viewController else {
-            print("Attempted to use interactor with no view controller set")
-            return
+        switch self.eventRequestState {
+        case .idle:
+            self.makeRequestForMoreEvents()
+        case .offline:
+            self.viewController?.showOfflineMode()
+        case .requesting, .exhausted:
+            break
         }
-        guard !self.requesting else {
-            print("requestMoreEvents says 'yes I know'")
-            return
-        }
-        self.requesting = true
-        self.eventService.loadEvents(pageOffset: nextPageToLoad, completionHandler: { success in
-            if success {
-                self.nextPageToLoad += 1
-                self.requesting = false
-                viewController.reloadRows()
-            }
-        })
     }
     
-    func setFavoriteState(onRow row: Int, favoriteState: FavouriteState) {
-        guard let viewController = self.viewController else {
-            print("Attempted to use interactor with no view controller set")
-            return
-        }
-        guard let eventId = self.eventStore.getEvent(at: row)?.id else {
-            print("No event at the requested row \(row) found. State was:", favoriteState)
-            return
-        }
-        self.favouriteStore.setFavouriteState(id: eventId, state: favoriteState)
-        viewController.updateRow(row)
-    }
-    
-    func getEventAtRow(_ row: Int) -> EventsListDefaultCellConfiguration {
-        guard let viewController = self.viewController else {
-            print("Attempted to use interactor with no view controller set")
-            return .empty
-        }
+    func getEventCellConfiguration(forRow row: Int) -> EventsListDefaultCellConfiguration {
         guard let event = self.eventStore.getEvent(at: row) else {
-            print("🔥💀 - WARNING! No event at expected row! Row was: \(row)")
+            print("No event at expected row! Row was: \(row)")
             return .empty
         }
+        
+        let image: UIImage = self.getImage(for: event.image, fromRow: row)
         let subtitle = self.formatDate(event.startDate)
-        
-        let image: UIImage = {
-            if let image = self.imageService.getFromCache(by: event.image) {
-                return image
-            } else {
-                self.imageService.downloadImage(at: event.image, completionHandler: { success in
-                    if success {
-                        viewController.updateRow(row)
-                    }
-                })
-                return UIImage.init()
-            }
-        }()
-        
-        let favoriteState = self.favouriteStore.getFavouriteState(id: event.id)
+        let favoriteState = self.favouriteStore.getFavouriteState(event: event)
         let eventCellConfiguration = EventsListDefaultCellConfiguration(
             row: row,
             image: image,
             favouriteState: favoriteState,
             title: event.title,
             subtitle: subtitle,
-            favouriteStateHandler: { [weak self] (row: Int, favouriteState: FavouriteState) in
-                self?.setFavoriteState(onRow: row, favoriteState: favoriteState)
+            setFavouriteStateHandler: { [weak self] (row: Int, newState: FavouriteState) in
+                self?.setFavoriteState(onRow: row, favoriteState: newState)
             }
         )
         return eventCellConfiguration
-        
+    }
+    
+    func retryInternetConnection() {
+        guard self.eventRequestState == .offline else {
+            return
+        }
+        self.eventRequestState = .idle
+        self.makeRequestForMoreEvents()
+    }
+    
+    private func setFavoriteState(onRow row: Int, favoriteState: FavouriteState) {
+        guard let viewController = self.viewController else {
+            print("Attempted to use interactor with no view controller set")
+            return
+        }
+        guard let event = self.eventStore.getEvent(at: row) else {
+            print("No event at the requested row \(row) found. State was:", favoriteState)
+            return
+        }
+        self.favouriteStore.setFavouriteState(event: event, state: favoriteState)
+        viewController.updateRow(row)
+    }
+    
+    private func makeRequestForMoreEvents() {
+        self.eventRequestState = .requesting
+        self.eventService.loadEvents(pageOffset: nextPageToLoad, completionHandler: { result in
+            switch result {
+            case .gotEvents:
+                self.nextPageToLoad += 1
+                self.eventRequestState = .idle
+                DispatchQueue.main.async {
+                    self.viewController?.reloadRows()
+                }
+            case .gotFinalEvent:
+                self.eventRequestState = .exhausted
+            case .noInternet:
+                self.eventRequestState = .offline
+                DispatchQueue.main.async {
+                    self.viewController?.showOfflineMode()
+                }
+            case .failure(_):
+                self.eventRequestState = .idle
+            }
+        })
     }
     
     private func formatDate(_ date: Date) -> String {
         // TODO: This shouldn't be the interactor's job...
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale.autoupdatingCurrent
-        dateFormatter.dateFormat = "dddd t"
+        dateFormatter.dateFormat = "EEEE H:mm"
         dateFormatter.timeZone = .autoupdatingCurrent
         return dateFormatter.string(from: date)
+    }
+    
+    private func getImage(for url: URL, fromRow row: Int) -> UIImage {
+        if let image = self.imageService.getFromCache(by: url) {
+            return image
+        } else {
+            self.imageService.downloadImage(at: url, completionHandler: { success in
+                if success {
+                    self.viewController?.updateRow(row)
+                }
+            })
+            return UIImage.init()
+        }
     }
     
 }

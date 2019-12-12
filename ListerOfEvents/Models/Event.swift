@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Event: Codable {
+struct Event: Codable, Equatable {
     
     let id: String
     let title: String

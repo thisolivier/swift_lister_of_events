@@ -14,6 +14,8 @@ protocol EventsListViewControllerable: class {
     
     func reloadRows()
     
+    func showOfflineMode()
+    
 }
 
 protocol EventsListViewInteractorable {
@@ -22,7 +24,9 @@ protocol EventsListViewInteractorable {
     
     func requestMoreEvents()
     
-    func getEventAtRow(_ row: Int) -> EventsListDefaultCellConfiguration
+    func getEventCellConfiguration(forRow row: Int) -> EventsListDefaultCellConfiguration
+    
+    func retryInternetConnection()
     
 }
 
@@ -33,10 +37,10 @@ struct EventsListDefaultCellConfiguration {
     let favouriteState: FavouriteState
     let title: String
     let subtitle: String
-    let favouriteStateHandler: (_:Int, _: FavouriteState)->()
+    let setFavouriteStateHandler: (_:Int, _: FavouriteState)->()
     
     static let empty: Self = {
-        return Self(row: 0, image: UIImage(), favouriteState: .none, title: "", subtitle: "", favouriteStateHandler: {_,_ in })
+        return Self(row: 0, image: UIImage(), favouriteState: .none, title: "", subtitle: "", setFavouriteStateHandler: {_,_ in })
     }()
     
 }

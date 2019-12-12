@@ -35,7 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = eventListTableViewController
         self.window = window
-        print("We should have a view visible...")
         window.makeKeyAndVisible()
     }
 

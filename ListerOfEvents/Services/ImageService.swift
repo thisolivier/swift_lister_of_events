@@ -23,7 +23,7 @@ class ImageService{
     }
     
     func downloadImage(at url: URL, completionHandler: @escaping (_: Bool)->()) {
-        self.httpApiService.getImage(from: url, completionHandler: { [weak self] (result: Result<UIImage, Error>) in
+        self.httpApiService.getImage(from: url, completionHandler: { [weak self] (result: Result<UIImage, HttpApiService.ApiError>) in
             switch result {
             case .success(let image):
                 self?.imageStore.storeImage(image, for: url)

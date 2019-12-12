@@ -22,15 +22,14 @@ class HttpApiService {
     
     enum ApiError: Error {
         case couldNotConvertData(message: String)
+        case connectionIssue
+        case otherError(Error)
     }
     
     @discardableResult
-    func getCodable<T: Codable>(from url: URL, completionHandler: @escaping (_: Result<T, Error>)->()) -> Cancellable {
+    func getCodable<T: Codable>(from url: URL, completionHandler: @escaping (_: Result<T, ApiError>)->()) -> Cancellable {
         let codaleRequestPublisher = self.urlSession.dataTaskPublisher(for: url)
-            .map {
-                print("Got data!", $0)
-                return $0.data
-            }
+            .map { $0.data }
             .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
@@ -38,7 +37,12 @@ class HttpApiService {
                 case .finished:
                     break
                 case .failure(let error):
-                    completionHandler(.failure(error))
+                    if let urlError = error as? URLError, urlError.code == .notConnectedToInternet {
+                            completionHandler(.failure(.connectionIssue))
+                    } else {
+                        completionHandler(.failure(.otherError(error)))
+                    }
+                    
                 }
             }, receiveValue: { value in
                 completionHandler(.success(value))
@@ -48,7 +52,7 @@ class HttpApiService {
     }
     
     @discardableResult
-    func getImage(from url: URL, completionHandler: @escaping (_: Result<UIImage, Error>)->()) -> Cancellable {
+    func getImage(from url: URL, completionHandler: @escaping (_: Result<UIImage, ApiError>)->()) -> Cancellable {
         let imageRequestPublisher = self.urlSession.dataTaskPublisher(for: url)
             .map { UIImage(data: $0.data) }
             .receive(on: RunLoop.main)
@@ -57,7 +61,7 @@ class HttpApiService {
                 case .finished:
                     break
                 case .failure(let error):
-                    completionHandler(.failure(error))
+                    completionHandler(.failure(.otherError(error)))
                 }
             }, receiveValue: { (image: UIImage?) in
                 guard let image = image else {
