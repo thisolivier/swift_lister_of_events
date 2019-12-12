@@ -8,15 +8,7 @@
 
 import Foundation
 
-protocol EventSource {
-    
-    var eventsCount: Int { get }
-    
-    func getEvent(at: Int) -> Event?
-    
-}
-
-class EventStore: EventSource {
+class EventStore {
     
     private var events: [Event] = []
     
