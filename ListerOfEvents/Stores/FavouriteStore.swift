@@ -17,8 +17,10 @@ class FavouriteStore {
     
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
-        if let existingFavourites = userDefaults.array(forKey: self.favouritesKey) as? [Event] {
-            self.favourites = existingFavourites
+        let decoder = JSONDecoder()
+        if let data = userDefaults.object(forKey: self.favouritesKey) as? Data,
+            let eventsFromStorage = try? decoder.decode([Event].self, from: data) {
+            self.favourites = eventsFromStorage
         } else {
             self.favourites = []
             self.updatePeristentStorage()
@@ -51,14 +53,28 @@ class FavouriteStore {
         }
     }
     
-    func getAllFavourites() -> [Event] {
-        return self.favourites
-    }
-    
     private func updatePeristentStorage() {
         DispatchQueue.global(qos: .background).async {
-            self.userDefaults.set(self.favourites, forKey: self.favouritesKey)
+            guard let data = try? JSONEncoder().encode(self.favourites) else {
+                fatalError()
+            }
+            self.userDefaults.set(data, forKey: self.favouritesKey)
         }
+    }
+    
+}
+
+extension FavouriteStore: EventSource {
+    
+    var eventsCount: Int {
+        return self.favourites.count
+    }
+    
+    func getEvent(at index: Int) -> Event? {
+        guard self.favourites.count > index else {
+            return nil
+        }
+        return self.favourites[index]
     }
     
 }

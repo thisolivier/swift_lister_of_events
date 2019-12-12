@@ -14,15 +14,13 @@ protocol EventsListViewControllerable: class {
     
     func reloadRows()
     
-    func showOfflineMode()
-    
 }
 
 protocol EventsListViewInteractorable {
     
     var countOfEvents: Int { get }
     
-    func requestMoreEvents()
+    func getFooterConfiguration() -> FooterViewConfiguration?
     
     func getEventCellConfiguration(forRow row: Int) -> EventsListDefaultCellConfiguration
     

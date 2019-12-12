@@ -22,33 +22,36 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     
     private var nextPageToLoad = 1
     private var eventRequestState: EventRequestState = .idle
+    private var eventSource: EventSource {
+        if self.nextPageToLoad == 1 && self.eventRequestState == .offline {
+            return self.favouriteStore
+        } else {
+            return self.eventStore
+        }
+    }
     
     init(imageService: ImageService, eventService: EventService, eventStore: EventStore, favouriteStore: FavouriteStore) {
         self.imageService = imageService
         self.eventService = eventService
         self.eventStore = eventStore
         self.favouriteStore = favouriteStore
+        self.requestMoreEvents()
     }
     
     var countOfEvents: Int {
-        return self.eventStore.eventsCount
-    }
-    
-    func requestMoreEvents() {
-        switch self.eventRequestState {
-        case .idle:
-            self.makeRequestForMoreEvents()
-        case .offline:
-            self.viewController?.showOfflineMode()
-        case .requesting, .exhausted:
-            break
-        }
+        self.eventSource.eventsCount
     }
     
     func getEventCellConfiguration(forRow row: Int) -> EventsListDefaultCellConfiguration {
-        guard let event = self.eventStore.getEvent(at: row) else {
+        guard let event = self.eventSource.getEvent(at: row) else {
             print("No event at expected row! Row was: \(row)")
             return .empty
+        }
+        
+        DispatchQueue.global(qos: .background).async {
+            if row + 5 > self.countOfEvents {
+                self.requestMoreEvents()
+            }
         }
         
         let image: UIImage = self.getImage(for: event.image, fromRow: row)
@@ -67,28 +70,39 @@ class EventsListViewInteractor: EventsListViewInteractorable {
         return eventCellConfiguration
     }
     
+    func getFooterConfiguration() -> FooterViewConfiguration? {
+        guard self.eventRequestState == .offline else {
+            return nil
+        }
+        let message = self.nextPageToLoad == 1 ? "You are offline and will only see events you've previously favourited" : "You've lost connectivity"
+        return FooterViewConfiguration(message: message, action: self.retryInternetConnection)
+    }
+    
     func retryInternetConnection() {
         guard self.eventRequestState == .offline else {
             return
         }
         self.eventRequestState = .idle
-        self.makeRequestForMoreEvents()
+        self.requestMoreEvents()
+        self.viewController?.reloadRows()
     }
     
     private func setFavoriteState(onRow row: Int, favoriteState: FavouriteState) {
-        guard let viewController = self.viewController else {
-            print("Attempted to use interactor with no view controller set")
+        guard self.eventRequestState != .offline && self.nextPageToLoad == 1 else {
             return
         }
-        guard let event = self.eventStore.getEvent(at: row) else {
+        guard let event = self.eventSource.getEvent(at: row) else {
             print("No event at the requested row \(row) found. State was:", favoriteState)
             return
         }
         self.favouriteStore.setFavouriteState(event: event, state: favoriteState)
-        viewController.updateRow(row)
+        viewController?.updateRow(row)
     }
     
-    private func makeRequestForMoreEvents() {
+    private func requestMoreEvents() {
+        guard self.eventRequestState == .idle else {
+            return
+        }
         self.eventRequestState = .requesting
         self.eventService.loadEvents(pageOffset: nextPageToLoad, completionHandler: { result in
             switch result {
@@ -103,7 +117,7 @@ class EventsListViewInteractor: EventsListViewInteractorable {
             case .noInternet:
                 self.eventRequestState = .offline
                 DispatchQueue.main.async {
-                    self.viewController?.showOfflineMode()
+                    self.viewController?.reloadRows()
                 }
             case .failure(_):
                 self.eventRequestState = .idle

@@ -8,7 +8,15 @@
 
 import Foundation
 
-class EventStore {
+protocol EventSource {
+    
+    var eventsCount: Int { get }
+    
+    func getEvent(at: Int) -> Event?
+    
+}
+
+class EventStore: EventSource {
     
     private var events: [Event] = []
     
@@ -26,19 +34,6 @@ class EventStore {
         } else {
             return nil
         }
-    }
-    
-    func indexForUrl(_ url: URL) -> Int? {
-        // Assumed that each event has a unique image
-        return events.firstIndex(where: { (event: Event) in
-            return event.image == url
-        })
-    }
-    
-    func indexForId(_ id: String) -> Int? {
-        return events.firstIndex(where: { (event: Event) in
-            return event.id == id
-        })
     }
     
 }

@@ -23,6 +23,9 @@
 		0935165A23A117900073B58D /* EventsListViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935165823A117900073B58D /* EventsListViewProtocols.swift */; };
 		0935165C23A13D490073B58D /* EventsListDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935165B23A13D490073B58D /* EventsListDefaultTableViewCell.swift */; };
 		0935165D23A13D490073B58D /* EventsListDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935165B23A13D490073B58D /* EventsListDefaultTableViewCell.swift */; };
+		0960030B23A1DAA9005E31DD /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0960030A23A1DAA9005E31DD /* FooterView.xib */; };
+		0960030D23A1DB33005E31DD /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0960030C23A1DB33005E31DD /* FooterView.swift */; };
+		0960031023A1DE29005E31DD /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0960030F23A1DE29005E31DD /* UIView.swift */; };
 		09C0984323A15BD700EDA906 /* HttpApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C0984223A15BD700EDA906 /* HttpApiService.swift */; };
 		09C0984523A15EB100EDA906 /* FavouriteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C0984423A15EB100EDA906 /* FavouriteStore.swift */; };
 		09C0984723A15EBE00EDA906 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C0984623A15EBE00EDA906 /* ImageStore.swift */; };
@@ -69,6 +72,9 @@
 		0935165523A1176D0073B58D /* EventsListViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewInteractor.swift; sourceTree = "<group>"; };
 		0935165823A117900073B58D /* EventsListViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewProtocols.swift; sourceTree = "<group>"; };
 		0935165B23A13D490073B58D /* EventsListDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListDefaultTableViewCell.swift; sourceTree = "<group>"; };
+		0960030A23A1DAA9005E31DD /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
+		0960030C23A1DB33005E31DD /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		0960030F23A1DE29005E31DD /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		09C0984223A15BD700EDA906 /* HttpApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpApiService.swift; sourceTree = "<group>"; };
 		09C0984423A15EB100EDA906 /* FavouriteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStore.swift; sourceTree = "<group>"; };
 		09C0984623A15EBE00EDA906 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 				0935162223A10F520073B58D /* SceneDelegate.swift */,
 				0935162B23A10F560073B58D /* LaunchScreen.storyboard */,
 				0935162E23A10F560073B58D /* Info.plist */,
+				0960030E23A1DE18005E31DD /* Extensions */,
 				0900EEFD23A1412F006FAE68 /* Static */,
 				0900EEFA23A13F60006FAE68 /* Models */,
 				09D0214F23A1519B00B650CD /* Stores */,
@@ -179,12 +186,22 @@
 			isa = PBXGroup;
 			children = (
 				0935165023A116E00073B58D /* EventsListTableViewController.storyboard */,
+				0960030A23A1DAA9005E31DD /* FooterView.xib */,
+				0960030C23A1DB33005E31DD /* FooterView.swift */,
 				0935165323A117500073B58D /* EventsListTableViewController.swift */,
 				0935165B23A13D490073B58D /* EventsListDefaultTableViewCell.swift */,
 				0935165523A1176D0073B58D /* EventsListViewInteractor.swift */,
 				0935165823A117900073B58D /* EventsListViewProtocols.swift */,
 			);
 			path = EventsListView;
+			sourceTree = "<group>";
+		};
+		0960030E23A1DE18005E31DD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0960030F23A1DE29005E31DD /* UIView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		09D0214E23A1518300B650CD /* Services */ = {
@@ -311,6 +328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0960030B23A1DAA9005E31DD /* FooterView.xib in Resources */,
 				0935162D23A10F560073B58D /* LaunchScreen.storyboard in Resources */,
 				0935165123A116E00073B58D /* EventsListTableViewController.storyboard in Resources */,
 				0935162A23A10F560073B58D /* Assets.xcassets in Resources */,
@@ -343,6 +361,7 @@
 				0935165623A1176D0073B58D /* EventsListViewInteractor.swift in Sources */,
 				0900EEFF23A14144006FAE68 /* DisplayStrings.swift in Sources */,
 				0935162123A10F520073B58D /* AppDelegate.swift in Sources */,
+				0960030D23A1DB33005E31DD /* FooterView.swift in Sources */,
 				09C0984923A15EDB00EDA906 /* EventStore.swift in Sources */,
 				09D615A023A1681F00B29FD9 /* EventService.swift in Sources */,
 				09C0984523A15EB100EDA906 /* FavouriteStore.swift in Sources */,
@@ -350,6 +369,7 @@
 				09C0984723A15EBE00EDA906 /* ImageStore.swift in Sources */,
 				0935165C23A13D490073B58D /* EventsListDefaultTableViewCell.swift in Sources */,
 				0900EEFC23A13F72006FAE68 /* FavouriteState.swift in Sources */,
+				0960031023A1DE29005E31DD /* UIView.swift in Sources */,
 				0935165423A117500073B58D /* EventsListTableViewController.swift in Sources */,
 				09C0984323A15BD700EDA906 /* HttpApiService.swift in Sources */,
 				0935162323A10F520073B58D /* SceneDelegate.swift in Sources */,
