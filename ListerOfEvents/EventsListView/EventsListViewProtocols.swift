@@ -27,18 +27,3 @@ protocol EventsListViewInteractorable {
     func retryInternetConnection()
     
 }
-
-struct EventsListDefaultCellConfiguration {
-    
-    let row: Int
-    let image: UIImage
-    let favouriteState: FavouriteState
-    let title: String
-    let subtitle: String
-    let setFavouriteStateHandler: (_:Int, _: FavouriteState)->()
-    
-    static let empty: Self = {
-        return Self(row: 0, image: UIImage(), favouriteState: .none, title: "", subtitle: "", setFavouriteStateHandler: {_,_ in })
-    }()
-    
-}
