@@ -182,13 +182,13 @@
 		0935165223A1170F0073B58D /* EventsListView */ = {
 			isa = PBXGroup;
 			children = (
-				0935165023A116E00073B58D /* EventsListTableViewController.storyboard */,
-				0960030A23A1DAA9005E31DD /* FooterView.xib */,
-				0960030C23A1DB33005E31DD /* FooterView.swift */,
-				0935165323A117500073B58D /* EventsListTableViewController.swift */,
-				0935165B23A13D490073B58D /* EventsListDefaultTableViewCell.swift */,
 				0935165523A1176D0073B58D /* EventsListViewInteractor.swift */,
 				0935165823A117900073B58D /* EventsListViewProtocols.swift */,
+				0935165023A116E00073B58D /* EventsListTableViewController.storyboard */,
+				0935165323A117500073B58D /* EventsListTableViewController.swift */,
+				0935165B23A13D490073B58D /* EventsListDefaultTableViewCell.swift */,
+				0960030A23A1DAA9005E31DD /* FooterView.xib */,
+				0960030C23A1DB33005E31DD /* FooterView.swift */,
 			);
 			path = EventsListView;
 			sourceTree = "<group>";

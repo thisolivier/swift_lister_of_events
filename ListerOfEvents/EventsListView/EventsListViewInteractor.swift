@@ -19,10 +19,14 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     private let eventStore: EventStore
     private let favouriteStore: FavouriteStore
     
-    weak var viewController: EventsListViewControllerable?
-    
     private var nextPageToLoad = 1
     private var eventRequestState: EventRequestState = .idle
+    
+    weak var viewController: EventsListViewControllerable?
+    
+    var countOfEvents: Int {
+        self.eventStore.eventsCount
+    }
     
     init(imageService: ImageService, eventService: EventService, eventStore: EventStore, favouriteStore: FavouriteStore) {
         self.imageService = imageService
@@ -32,9 +36,7 @@ class EventsListViewInteractor: EventsListViewInteractorable {
         self.requestMoreEvents()
     }
     
-    var countOfEvents: Int {
-        self.eventStore.eventsCount
-    }
+    // MARK: Public methods
     
     func getEventCellConfiguration(forRow row: Int) -> EventsListDefaultCellConfiguration {
         guard let event = self.eventStore.getEvent(at: row) else {
@@ -68,8 +70,7 @@ class EventsListViewInteractor: EventsListViewInteractorable {
         guard self.eventRequestState == .offline else {
             return nil
         }
-        let message = "You are offline"
-        return FooterViewConfiguration(message: message, action: self.retryInternetConnection)
+        return FooterViewConfiguration(message: DisplayStrings.offlineMessage.rawValue, buttonLabel: DisplayStrings.retryInternet.rawValue, action: self.retryInternetConnection)
     }
     
     func retryInternetConnection() {
@@ -80,6 +81,8 @@ class EventsListViewInteractor: EventsListViewInteractorable {
         self.requestMoreEvents()
         self.viewController?.reloadRows()
     }
+    
+    // MARK: Private Methods
     
     private func setFavoriteState(onRow row: Int, favoriteState: FavouriteState) {
         guard let event = self.eventStore.getEvent(at: row) else {

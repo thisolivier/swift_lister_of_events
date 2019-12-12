@@ -10,6 +10,7 @@ import UIKit
 
 struct FooterViewConfiguration {
     let message: String
+    let buttonLabel: String
     let action: ()->()
 }
 
@@ -22,6 +23,7 @@ class FooterView: UIView {
     func configure(with configuration: FooterViewConfiguration) {
         self.footerLabel.text = configuration.message
         self.action = configuration.action
+        self.footerButton.setTitle(configuration.buttonLabel, for: .normal)
     }
     
     @IBAction func didTapFooterButton(_ sender: Any) {

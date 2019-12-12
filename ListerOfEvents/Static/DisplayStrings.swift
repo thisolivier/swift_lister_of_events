@@ -11,8 +11,6 @@ import Foundation
 enum DisplayStrings: String {
     case addToFavourites = "Favourite"
     case removeFromFavourites = "Unfavourite"
-    case errorTitle = "Oh no!"
     case offlineMessage = "Looks like you're offline"
-    case retry = "Retry"
-    case cancel = "Deep Sigh"
+    case retryInternet = "Retry Connection"
 }
