@@ -22,8 +22,12 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     
     private var nextPageToLoad = 1
     private var eventRequestState: EventRequestState = .idle
+    private var shouldUseBackupData: Bool {
+        return self.nextPageToLoad == 1 && self.eventRequestState == .offline
+    }
+    
     private var eventSource: EventSource {
-        if self.nextPageToLoad == 1 && self.eventRequestState == .offline {
+        if self.shouldUseBackupData {
             return self.favouriteStore
         } else {
             return self.eventStore
@@ -65,7 +69,8 @@ class EventsListViewInteractor: EventsListViewInteractorable {
             subtitle: subtitle,
             setFavouriteStateHandler: { [weak self] (row: Int, newState: FavouriteState) in
                 self?.setFavoriteState(onRow: row, favoriteState: newState)
-            }
+            },
+            showButton: !self.shouldUseBackupData
         )
         return eventCellConfiguration
     }
@@ -74,7 +79,7 @@ class EventsListViewInteractor: EventsListViewInteractorable {
         guard self.eventRequestState == .offline else {
             return nil
         }
-        let message = self.nextPageToLoad == 1 ? "You are offline and will only see events you've previously favourited" : "You've lost connectivity"
+        let message = self.nextPageToLoad == 1 ? "You are offline and will only see your favorites" : "You've lost connectivity"
         return FooterViewConfiguration(message: message, action: self.retryInternetConnection)
     }
     
@@ -88,7 +93,8 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     }
     
     private func setFavoriteState(onRow row: Int, favoriteState: FavouriteState) {
-        guard self.eventRequestState != .offline && self.nextPageToLoad == 1 else {
+        // TODO: Make work when offline
+        guard self.eventRequestState != .offline && self.nextPageToLoad != 1 else {
             return
         }
         guard let event = self.eventSource.getEvent(at: row) else {
