@@ -42,7 +42,6 @@ class EventsListDefaultTableViewCell: UITableViewCell {
         self.row = configuration.row
         self.favouriteState = configuration.favouriteState
         self.setFavouriteStateHandler = configuration.setFavouriteStateHandler
-        self.favouriteButton.alpha = configuration.showButton ? 1 : 0
         
         self.backgroundWrapperView.layer.cornerRadius = 5
         self.favouriteButton.layer.cornerRadius = 5
@@ -55,7 +54,6 @@ class EventsListDefaultTableViewCell: UITableViewCell {
         self.eventImage.image = nil
         self.eventTitle.text = ""
         self.eventSubtitle.text = ""
-        self.favouriteButton.alpha = 1
     }
     
     @IBAction func didTapFavorite(_ sender: Any) {

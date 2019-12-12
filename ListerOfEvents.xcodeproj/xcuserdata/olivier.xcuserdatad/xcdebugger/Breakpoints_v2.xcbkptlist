@@ -38,7 +38,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "setFavouriteState(event:state:)"
+            landmarkName = "init(userDefaults:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -54,7 +54,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
             endingLineNumber = "48"
-            landmarkName = "getFavouriteState(event:)"
+            landmarkName = "setFavouriteState(event:state:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -102,8 +102,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
             endingLineNumber = "21"
-            landmarkName = "init(userDefaults:)"
-            landmarkType = "7">
+            landmarkName = "FavouriteStore"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -196,9 +196,9 @@
             filePath = "ListerOfEvents/EventsListView/EventsListViewInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "getFooterConfiguration()"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "retryInternetConnection()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -215,22 +215,6 @@
             startingLineNumber = "26"
             endingLineNumber = "26"
             landmarkName = "init(userDefaults:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0F2F4D8F-0F0F-4BCC-9D88-C7357D39953F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ListerOfEvents/EventsListView/EventsListViewInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "retryInternetConnection()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

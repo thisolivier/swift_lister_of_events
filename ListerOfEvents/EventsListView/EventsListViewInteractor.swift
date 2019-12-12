@@ -18,21 +18,11 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     private let eventService: EventService
     private let eventStore: EventStore
     private let favouriteStore: FavouriteStore
+    
     weak var viewController: EventsListViewControllerable?
     
     private var nextPageToLoad = 1
     private var eventRequestState: EventRequestState = .idle
-    private var shouldUseBackupData: Bool {
-        return self.nextPageToLoad == 1 && self.eventRequestState == .offline
-    }
-    
-    private var eventSource: EventSource {
-        if self.shouldUseBackupData {
-            return self.favouriteStore
-        } else {
-            return self.eventStore
-        }
-    }
     
     init(imageService: ImageService, eventService: EventService, eventStore: EventStore, favouriteStore: FavouriteStore) {
         self.imageService = imageService
@@ -43,16 +33,16 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     }
     
     var countOfEvents: Int {
-        self.eventSource.eventsCount
+        self.eventStore.eventsCount
     }
     
     func getEventCellConfiguration(forRow row: Int) -> EventsListDefaultCellConfiguration {
-        guard let event = self.eventSource.getEvent(at: row) else {
+        guard let event = self.eventStore.getEvent(at: row) else {
             print("No event at expected row! Row was: \(row)")
             return .empty
         }
         
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.main.async {
             if row + 5 > self.countOfEvents {
                 self.requestMoreEvents()
             }
@@ -69,8 +59,7 @@ class EventsListViewInteractor: EventsListViewInteractorable {
             subtitle: subtitle,
             setFavouriteStateHandler: { [weak self] (row: Int, newState: FavouriteState) in
                 self?.setFavoriteState(onRow: row, favoriteState: newState)
-            },
-            showButton: !self.shouldUseBackupData
+            }
         )
         return eventCellConfiguration
     }
@@ -79,7 +68,7 @@ class EventsListViewInteractor: EventsListViewInteractorable {
         guard self.eventRequestState == .offline else {
             return nil
         }
-        let message = self.nextPageToLoad == 1 ? "You are offline and will only see your favorites" : "You've lost connectivity"
+        let message = "You are offline"
         return FooterViewConfiguration(message: message, action: self.retryInternetConnection)
     }
     
@@ -93,11 +82,7 @@ class EventsListViewInteractor: EventsListViewInteractorable {
     }
     
     private func setFavoriteState(onRow row: Int, favoriteState: FavouriteState) {
-        // TODO: Make work when offline
-        guard self.eventRequestState != .offline && self.nextPageToLoad != 1 else {
-            return
-        }
-        guard let event = self.eventSource.getEvent(at: row) else {
+        guard let event = self.eventStore.getEvent(at: row) else {
             print("No event at the requested row \(row) found. State was:", favoriteState)
             return
         }

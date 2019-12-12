@@ -15,6 +15,10 @@ class FavouriteStore {
     
     private var favourites: [Event]
     
+    var allFavourites:[Event] {
+        return self.favourites
+    }
+    
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
         let decoder = JSONDecoder()
@@ -60,21 +64,6 @@ class FavouriteStore {
             }
             self.userDefaults.set(data, forKey: self.favouritesKey)
         }
-    }
-    
-}
-
-extension FavouriteStore: EventSource {
-    
-    var eventsCount: Int {
-        return self.favourites.count
-    }
-    
-    func getEvent(at index: Int) -> Event? {
-        guard self.favourites.count > index else {
-            return nil
-        }
-        return self.favourites[index]
     }
     
 }

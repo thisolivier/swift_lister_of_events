@@ -36,10 +36,9 @@ struct EventsListDefaultCellConfiguration {
     let title: String
     let subtitle: String
     let setFavouriteStateHandler: (_:Int, _: FavouriteState)->()
-    let showButton: Bool
     
     static let empty: Self = {
-        return Self(row: 0, image: UIImage(), favouriteState: .none, title: "", subtitle: "", setFavouriteStateHandler: {_,_ in }, showButton: false)
+        return Self(row: 0, image: UIImage(), favouriteState: .none, title: "", subtitle: "", setFavouriteStateHandler: {_,_ in })
     }()
     
 }

@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             eventService: EventService(
                 apiService: httpApiService,
                 eventStore: eventStore,
+                favouritesStore: favouriteStore,
                 remoteUrl: apiBaseUrl),
             eventStore: eventStore,
             favouriteStore: favouriteStore)

@@ -36,4 +36,8 @@ class EventStore: EventSource {
         }
     }
     
+    func removeAllEvents() {
+        self.events = []
+    }
+    
 }
