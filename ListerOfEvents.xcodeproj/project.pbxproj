@@ -13,8 +13,6 @@
 		0935162323A10F520073B58D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935162223A10F520073B58D /* SceneDelegate.swift */; };
 		0935162A23A10F560073B58D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0935162923A10F560073B58D /* Assets.xcassets */; };
 		0935162D23A10F560073B58D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0935162B23A10F560073B58D /* LaunchScreen.storyboard */; };
-		0935163823A10F560073B58D /* ListerOfEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935163723A10F560073B58D /* ListerOfEventsTests.swift */; };
-		0935164323A10F560073B58D /* ListerOfEventsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935164223A10F560073B58D /* ListerOfEventsUITests.swift */; };
 		0935165123A116E00073B58D /* EventsListTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0935165023A116E00073B58D /* EventsListTableViewController.storyboard */; };
 		0935165423A117500073B58D /* EventsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935165323A117500073B58D /* EventsListTableViewController.swift */; };
 		0935165623A1176D0073B58D /* EventsListViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0935165523A1176D0073B58D /* EventsListViewInteractor.swift */; };
@@ -61,11 +59,7 @@
 		0935162C23A10F560073B58D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0935162E23A10F560073B58D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0935163323A10F560073B58D /* ListerOfEventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListerOfEventsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0935163723A10F560073B58D /* ListerOfEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListerOfEventsTests.swift; sourceTree = "<group>"; };
-		0935163923A10F560073B58D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0935163E23A10F560073B58D /* ListerOfEventsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListerOfEventsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0935164223A10F560073B58D /* ListerOfEventsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListerOfEventsUITests.swift; sourceTree = "<group>"; };
-		0935164423A10F560073B58D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0935165023A116E00073B58D /* EventsListTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventsListTableViewController.storyboard; sourceTree = "<group>"; };
 		0935165323A117500073B58D /* EventsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListTableViewController.swift; sourceTree = "<group>"; };
 		0935165523A1176D0073B58D /* EventsListViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewInteractor.swift; sourceTree = "<group>"; };
@@ -129,8 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				0935161F23A10F520073B58D /* ListerOfEvents */,
-				0935163623A10F560073B58D /* ListerOfEventsTests */,
-				0935164123A10F560073B58D /* ListerOfEventsUITests */,
 				0935161E23A10F520073B58D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -159,24 +151,6 @@
 				0935165223A1170F0073B58D /* EventsListView */,
 			);
 			path = ListerOfEvents;
-			sourceTree = "<group>";
-		};
-		0935163623A10F560073B58D /* ListerOfEventsTests */ = {
-			isa = PBXGroup;
-			children = (
-				0935163723A10F560073B58D /* ListerOfEventsTests.swift */,
-				0935163923A10F560073B58D /* Info.plist */,
-			);
-			path = ListerOfEventsTests;
-			sourceTree = "<group>";
-		};
-		0935164123A10F560073B58D /* ListerOfEventsUITests */ = {
-			isa = PBXGroup;
-			children = (
-				0935164223A10F560073B58D /* ListerOfEventsUITests.swift */,
-				0935164423A10F560073B58D /* Info.plist */,
-			);
-			path = ListerOfEventsUITests;
 			sourceTree = "<group>";
 		};
 		0935165223A1170F0073B58D /* EventsListView */ = {
@@ -370,7 +344,6 @@
 			files = (
 				0935165A23A117900073B58D /* EventsListViewProtocols.swift in Sources */,
 				0935165723A1176D0073B58D /* EventsListViewInteractor.swift in Sources */,
-				0935163823A10F560073B58D /* ListerOfEventsTests.swift in Sources */,
 				0935165D23A13D490073B58D /* EventsListDefaultTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,7 +352,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0935164323A10F560073B58D /* ListerOfEventsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
